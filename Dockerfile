@@ -12,7 +12,8 @@ WORKDIR ${WORKDIR}
 # copy package.json first to prevent npm install being rerun when only code changes
 COPY ./package.json ${WORKDIR}
 COPY ./package-lock.json ${WORKDIR}
-RUN npm ci
+RUN --mount=type=secret,id=GITHUB_TOKEN \
+	GITHUB_TOKEN=$(cat /run/secrets/GITHUB_TOKEN) npm ci
 
 # add local code
 ADD . ${WORKDIR}

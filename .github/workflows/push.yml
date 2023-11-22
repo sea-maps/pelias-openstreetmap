@@ -42,13 +42,13 @@ jobs:
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
-          images: ghcr.io/sea-maps/pelias-schema
+          images: ghcr.io/sea-maps/pelias-openstreetmap
       - name: Build and push Docker image
         uses: docker/build-push-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56
         with:
           context: .
           push: true
-          secret-envs: |
+          secrets: |
             GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
