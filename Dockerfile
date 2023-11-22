@@ -13,7 +13,9 @@ WORKDIR ${WORKDIR}
 COPY ./package.json ${WORKDIR}
 COPY ./package-lock.json ${WORKDIR}
 COPY ./.npmrc ${WORKDIR}
-RUN npm ci
+
+RUN --mount=type=secret,id=GITHUB_TOKEN \
+	GITHUB_TOKEN=$(cat /run/secrets/GITHUB_TOKEN) npm ci
 
 # add local code
 ADD . ${WORKDIR}
