@@ -34,6 +34,7 @@
     "url": "https://github.com/mapzen/pelias-openstreetmap/issues"
   },
   "dependencies": {
+    "@sea-maps/pelias-dbclient": "^0.0.0-development",
     "async": "^3.0.1",
     "combined-stream": "^1.0.5",
     "extend": "^3.0.0",
@@ -44,7 +45,6 @@
     "pbf2json": "^6.9.0",
     "pelias-blacklist-stream": "^1.0.0",
     "pelias-config": "^4.12.0",
-    "pelias-dbclient": "^2.13.0",
     "pelias-logger": "^1.2.1",
     "pelias-model": "^9.2.0",
     "pelias-wof-admin-lookup": "^7.8.0",

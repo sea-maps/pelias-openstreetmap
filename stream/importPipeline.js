@@ -17,22 +17,22 @@ streams.categoryMapper = require('./category_mapper');
 streams.addendumMapper = require('./addendum_mapper');
 streams.popularityMapper = require('./popularity_mapper');
 streams.dbMapper = require('pelias-model').createDocumentMapperStream;
-streams.elasticsearch = require('pelias-dbclient');
+streams.elasticsearch = require('@sea-maps/pelias-dbclient');
 
 // default import pipeline
-streams.import = function(){
+streams.import = function () {
   streams.pbfParser()
-    .pipe( streams.docConstructor() )
-    .pipe( streams.addressesWithoutStreet() )
-    .pipe( streams.tagMapper() )
-    .pipe( streams.addressExtractor() )
-    .pipe( streams.blacklistStream() )
-    .pipe( streams.categoryMapper( categoryDefaults ) )
-    .pipe( streams.addendumMapper() )
-    .pipe( streams.popularityMapper() )
-    .pipe( streams.adminLookup() )
-    .pipe( streams.dbMapper() )
-    .pipe( streams.elasticsearch({name: 'openstreetmap'}) );
+    .pipe(streams.docConstructor())
+    .pipe(streams.addressesWithoutStreet())
+    .pipe(streams.tagMapper())
+    .pipe(streams.addressExtractor())
+    .pipe(streams.blacklistStream())
+    .pipe(streams.categoryMapper(categoryDefaults))
+    .pipe(streams.addendumMapper())
+    .pipe(streams.popularityMapper())
+    .pipe(streams.adminLookup())
+    .pipe(streams.dbMapper())
+    .pipe(streams.elasticsearch({ name: 'openstreetmap' }));
 };
 
 module.exports = streams;
